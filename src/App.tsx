@@ -7,37 +7,18 @@ import { useState } from "react";
 
 const App = () => {
 
-  const [users] = useState<Props[]>([
-    {
-      id: 1123123,
-      name: 'Ruslan',
-      email: 'Russss1@gmail.com',
-      active: true,
-      role: 'User'
-    },
-    {
-      id: 232534,
-      name: 'Dmitry',
-      email: 'Dmitry@gmail.com',
-      active: true,
-      role: 'Admin'
-    },
-    {
-      id: 3574687,
-      name: 'Bob Marley',
-      email: 'BobMarley@gmail.com',
-      active: false,
-      role: 'Editor'
-    }
-  ])
+  const [users, setUsers] = useState<Props[]>([])
+
+  const addUser = (newUser: Props) => {
+    setUsers((prev) => [...prev, newUser])
+  }
 
   return (
     <div className='container mt-5'>
-
       <div className='row'>
 
         <div className='col-4'>
-          <UserForm />
+          <UserForm addUser={addUser} />
         </div>
 
         <div className='col-8'>

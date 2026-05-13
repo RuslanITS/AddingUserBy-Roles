@@ -1,8 +1,59 @@
-const UserForm = () => {
+import { type ChangeEvent, type SubmitEvent, useState } from "react";
+import type { Props } from "../../type";
+
+type UserFormProps = {
+  addUser: (user: Props) => void
+}
+
+const UserForm = ( { addUser }: UserFormProps ) => {
+
+  const [formData, setFormData] = useState<Props>({
+    name: '',
+    email: '',
+    active: false,
+    role: '',
+    id: ''
+  })
+
+  const handleSubmit = (event: SubmitEvent) => {
+    event.preventDefault()
+
+    const newUser = {
+      ...formData,
+      id: crypto.randomUUID()
+    }
+
+    setFormData({
+      name: '',
+      email: '',
+      active: false,
+      role: 'user',
+      id: ''
+    })
+
+    addUser(newUser)
+  }
+
+  const onChangeHandler = (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+
+    const { name, value, type } = event.target
+
+    setFormData((prevState) => ({
+      ...prevState,
+
+      [name]:
+        type === 'checkbox'
+          ? (event.target as HTMLInputElement).checked
+          : value
+    }))
+  }
+
   return (
     <div className='card p-4 shadow-sm'>
 
-      <form>
+      <form onSubmit={handleSubmit}>
 
         <h4 className='mb-4'>
           Add user
@@ -17,10 +68,13 @@ const UserForm = () => {
           </label>
 
           <input
+            name={'name'}
             id='name'
             type='text'
+            value={formData.name}
             className='form-control'
             placeholder='Name'
+            onChange={onChangeHandler}
           />
         </div>
 
@@ -33,19 +87,25 @@ const UserForm = () => {
           </label>
 
           <input
+            name={'email'}
             id='email'
             type='email'
+            value={formData.email}
             className='form-control'
             placeholder='Email'
+            onChange={onChangeHandler}
           />
         </div>
 
         <div className='form-check mb-3'>
 
           <input
+            name={'active'}
             id='active'
             type='checkbox'
+            checked={formData.active}
             className='form-check-input'
+            onChange={onChangeHandler}
           />
 
           <label
@@ -67,9 +127,16 @@ const UserForm = () => {
           </label>
 
           <select
+            onChange={onChangeHandler}
+            name={'role'}
+            value={formData.role}
             id='role'
             className='form-select'
           >
+            <option value='' disabled>
+              Choose role
+            </option>
+
             <option value='user'>
               User
             </option>

@@ -7,22 +7,34 @@ type UsersProps = {
 
 const Users = ({ users }: UsersProps) => {
   return (
-    <ul className='list-group'>
-      <div className='card p-4'>
-        <h4 className='mb-4'>
-          Users
-        </h4>
-        {
-          users.map((user) => (
-            <UserItem
-              key={user.id}
-              user={user}
-            />
-          ))
-        }
-      </div>
+    <div className='card p-4'>
 
-    </ul>
+      {
+        users.length === 0 ? (
+          <h4>No users yet</h4>
+        ) : (
+          <>
+            <h4 className='mb-4'>
+              Users
+            </h4>
+
+            <ul className='list-group'>
+
+              {
+                users.map((user) => (
+                  <UserItem
+                    key={user.id}
+                    user={user}
+                  />
+                ))
+              }
+
+            </ul>
+          </>
+        )
+      }
+
+    </div>
   )
 }
 

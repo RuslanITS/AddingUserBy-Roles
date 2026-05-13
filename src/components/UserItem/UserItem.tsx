@@ -11,9 +11,9 @@ const UserItem = ({ user }: UserItemProps) => {
     >
 
       <div>
-        <h6 className='mb-1'>
+        <h5 className='mb-1'>
           {user.name}
-        </h6>
+        </h5>
 
         <small>
           {user.email}
@@ -22,7 +22,13 @@ const UserItem = ({ user }: UserItemProps) => {
 
       <div className='text-end'>
 
-        <span className='badge bg-primary'>
+        <span  className={
+          user.role === 'admin'
+            ? 'badge bg-danger'
+            : user.role === 'editor'
+              ? 'badge bg-dark'
+              : 'badge bg-primary'
+        } >
           {user.role}
         </span>
 

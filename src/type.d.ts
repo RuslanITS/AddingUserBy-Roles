@@ -1,7 +1,7 @@
 export type Props = {
-  id: number
+  id: string
   name: string
   email: string
   active: boolean
-  role: 'User' | 'Admin' | 'Editor'
+  role: '' | 'user' | 'admin' | 'editor'
 }
