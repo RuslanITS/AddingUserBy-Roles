@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import type { Props } from "../../type";
 
@@ -23,6 +24,17 @@ const UserForm = ( { addUser }: UserFormProps ) => {
       id: crypto.randomUUID()
     }
 
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.role
+    ) {
+      toast.error('\n' +
+        'You have not filled in the field')
+
+      return
+    }
+
     setFormData({
       name: '',
       email: '',
@@ -32,6 +44,7 @@ const UserForm = ( { addUser }: UserFormProps ) => {
     })
 
     addUser(newUser)
+    toast.success('User added successfully')
   }
 
   const onChangeHandler = (
@@ -57,6 +70,7 @@ const UserForm = ( { addUser }: UserFormProps ) => {
 
         <h4 className='mb-4'>
           Add user
+          <i className="bi bi-person-plus-fill ms-2"></i>
         </h4>
 
         <div className='mb-3'>
@@ -65,6 +79,7 @@ const UserForm = ( { addUser }: UserFormProps ) => {
             className='form-label'
           >
             Name
+            <i className="bi bi-person-vcard-fill ms-2"></i>
           </label>
 
           <input
@@ -84,6 +99,7 @@ const UserForm = ( { addUser }: UserFormProps ) => {
             className='form-label'
           >
             Email
+            <i className='bi bi-envelope ms-2'></i>
           </label>
 
           <input
@@ -158,6 +174,7 @@ const UserForm = ( { addUser }: UserFormProps ) => {
           className='btn btn-primary w-100'
         >
           Add user
+          <i className='bi bi-pencil-square ms-2'></i>
         </button>
 
       </form>

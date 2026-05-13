@@ -11,11 +11,14 @@ const Users = ({ users }: UsersProps) => {
 
       {
         users.length === 0 ? (
-          <h4>No users yet</h4>
+          <h4 className={'text-center'}>No users yet
+            <i className='bi bi-people ms-2'></i>
+          </h4>
         ) : (
           <>
             <h4 className='mb-4'>
               Users
+              <i className='bi bi-person'></i>
             </h4>
 
             <ul className='list-group'>

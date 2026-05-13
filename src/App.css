@@ -1,0 +1,21 @@
+body {
+  background: #f4f7fb;
+}
+
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.list-group-item {
+  border: none;
+  margin-bottom: 10px;
+  transition: 0.2s ease;
+  background: #f8f9fa;
+}
+
+.badge {
+  padding: 8px 12px;
+  font-size: 13px;
+}

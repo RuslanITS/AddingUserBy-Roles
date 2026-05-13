@@ -15,16 +15,17 @@ const UserItem = ({ user }: UserItemProps) => {
           {user.name}
         </h5>
 
-        <small>
+        <span>
           {user.email}
-        </small>
+          <i className='bi bi-envelope ms-2'></i>
+        </span>
       </div>
 
       <div className='text-end'>
 
         <span  className={
           user.role === 'admin'
-            ? 'badge bg-danger'
+            ? 'badge bg-danger bi bi-shield-lock'
             : user.role === 'editor'
               ? 'badge bg-dark'
               : 'badge bg-primary'
@@ -44,6 +45,7 @@ const UserItem = ({ user }: UserItemProps) => {
               ? 'Active'
               : 'Not active'
           }
+          <i className='bi bi-check-circle-fill ms-2'></i>
         </p>
 
       </div>

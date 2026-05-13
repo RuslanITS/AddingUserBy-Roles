@@ -1,7 +1,10 @@
 import UserForm from "./components/UserForm/UseForm.tsx";
 import type { Props } from "./type";
 import Users from './components/Users/Users.tsx'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 import { useState } from "react";
 
@@ -26,7 +29,7 @@ const App = () => {
         </div>
 
       </div>
-
+      <ToastContainer />
     </div>
   )
 };
